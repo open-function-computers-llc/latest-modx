@@ -7,6 +7,8 @@ import (
 
 func (s *Server) handleVersionWithFilter(f string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Content-type", "application/json")
+
 		versions, err := s.GetMODXVersionsFromGithub(f)
 		if err != nil {
 			errOutput := map[string]string{
